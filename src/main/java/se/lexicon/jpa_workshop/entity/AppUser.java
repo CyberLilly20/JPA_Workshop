@@ -1,7 +1,10 @@
 package se.lexicon.jpa_workshop.entity;
 
+import org.hibernate.engine.internal.Cascade;
+
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -16,13 +19,14 @@ public class AppUser {
     private String password;
     private LocalDate registrationDate;
 
-    @OneToOne(cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToOne(cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE, CascadeType.REFRESH})
     @JoinColumn(name = "details_id")
     private Details details;
 
-    private AppUser(){
+    public AppUser(){
         this.registrationDate =LocalDate.now();
     }
+
 
 
     public AppUser(int appUserId, String username, String password, LocalDate registrationDate, Details details) {

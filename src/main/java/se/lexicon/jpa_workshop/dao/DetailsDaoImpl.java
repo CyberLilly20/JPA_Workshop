@@ -28,6 +28,7 @@ public class DetailsDaoImpl implements DetailsDao{
     }
 
     @Override
+    @Transactional
     public Details create(Details details) {
         entityManager.persist(details);
         return details;
