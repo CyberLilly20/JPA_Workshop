@@ -1,6 +1,7 @@
 package se.lexicon.jpa_workshop.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -23,7 +24,8 @@ public class Book {
     private Set<Author> authors;
 
     public void addAuthor(Author author){
-        if(author != null && authors != null) {
+        if(author != null) throw new IllegalArgumentException(" The book is null");
+        if(authors == null) authors = new HashSet<>();{
             authors.add(author);
         }
     }

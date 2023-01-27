@@ -1,6 +1,7 @@
 package se.lexicon.jpa_workshop.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -20,7 +21,8 @@ public class Author {
     joinColumns = @JoinColumn(name = "author_id"), inverseJoinColumns = @JoinColumn(name = "book_id"))
     private Set<Book> writtenBooks;
     public void addBook(Book book){
-        if(book != null && writtenBooks != null) {
+        if(book != null) throw new IllegalArgumentException(" The book is null");
+        if(writtenBooks == null) writtenBooks = new HashSet<>();{
             writtenBooks.add(book);
         }
     }
