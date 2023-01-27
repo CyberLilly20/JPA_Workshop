@@ -19,6 +19,14 @@ public class Author {
     @JoinTable(name = "authors_books",
     joinColumns = @JoinColumn(name = "author_id"), inverseJoinColumns = @JoinColumn(name = "book_id"))
     private Set<Book> writtenBooks;
+    public void addBook(Book book){
+        if(book != null && writtenBooks != null) {
+            writtenBooks.add(book);
+        }
+    }
+    public void removeBook(Book book){
+        writtenBooks.remove(book);
+    }
 
     public Author() {
     }
