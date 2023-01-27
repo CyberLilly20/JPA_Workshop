@@ -22,6 +22,15 @@ public class Book {
             joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
     private Set<Author> authors;
 
+    public void addAuthor(Author author){
+        if(author != null && authors != null) {
+            authors.add(author);
+        }
+    }
+    public void removeAuthor(Author author){
+        authors.remove(author);
+    }
+
     public Book() {
 
     }
@@ -38,6 +47,7 @@ public class Book {
         this.title = title;
         this.maxLoanDays = maxLoanDays;
     }
+
 
     public int getBookId() {
         return bookId;

@@ -22,6 +22,9 @@ public class AppUser {
     @OneToOne(cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE, CascadeType.REFRESH})
     @JoinColumn(name = "details_id")
     private Details details;
+    @OneToMany(cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE, CascadeType.REFRESH}, mappedBy ="borrower" )
+    private List<BookLoan> loans;
+
 
     public AppUser(){
         this.registrationDate =LocalDate.now();
